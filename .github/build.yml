@@ -1,0 +1,24 @@
+name: build
+on:
+  push:
+    branches: [ master ]
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu, windows]
+    runs-on: ${{ matrix.os }}-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        repository: llvm/llvm-project
+        ref: a2a4e5aae894e7d3912e05d28f0d5b23393cfbe9
+        submodules: true
+    - name: build
+      run: |
+        mkdir build
+        cmake -G ninja -DLLVM_ENABLE_PROJECTS='clang;clang-tools-extra;libcxx;libcxxabi' -DCMAKE_BUILD_TYPE=Release ../llvm
+        cmake --build .
+    
