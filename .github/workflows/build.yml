@@ -17,6 +17,7 @@ jobs:
         ref: a2a4e5aae894e7d3912e05d28f0d5b23393cfbe9
         submodules: true
     - name: build
+      shell: bash
       run: |
         mkdir build
         cd build
