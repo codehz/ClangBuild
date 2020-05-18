@@ -19,8 +19,15 @@ jobs:
     - name: build
       shell: bash
       run: |
-        mkdir build
+        root=$PWD
+        mkdir build dist
         cd build
-        cmake -DLLVM_ENABLE_PROJECTS='clang;clang-tools-extra;libcxx;libcxxabi' -DCMAKE_BUILD_TYPE=Release ../llvm
+        cmake -DLLVM_ENABLE_PROJECTS='clang;clang-tools-extra;libcxx;libcxxabi' -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$root/dist ../llvm
         cmake --build .
+        cmake --install .
+    - name: upload
+      uses: actions/upload-artifact@v2
+      with:
+        name: dist
+        path: dist
     
