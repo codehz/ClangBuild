@@ -19,6 +19,6 @@ jobs:
     - name: build
       run: |
         mkdir build
-        cmake -G ninja -DLLVM_ENABLE_PROJECTS='clang;clang-tools-extra;libcxx;libcxxabi' -DCMAKE_BUILD_TYPE=Release ../llvm
+        cmake -DLLVM_ENABLE_PROJECTS='clang;clang-tools-extra;libcxx;libcxxabi' -DCMAKE_BUILD_TYPE=Release ../llvm
         cmake --build .
     
