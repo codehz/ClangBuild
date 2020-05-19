@@ -22,7 +22,7 @@ jobs:
         root=$PWD
         mkdir build dist
         cd build
-        cmake -DLLVM_ENABLE_PROJECTS='clang;clang-tools-extra;libcxx;libcxxabi' -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$root/dist ../llvm
+        cmake -DLLVM_ENABLE_PROJECTS='clang;clang-tools-extra' -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$root/dist ../llvm
         cmake --build .
         cmake --install .
     - name: upload
